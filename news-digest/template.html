@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Daily News Digest</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 1rem; }
+    h1 { text-align: center; }
+    .source { margin-top: 2rem; }
+    .article { margin-bottom: 1.5rem; }
+    .title { font-weight: bold; }
+    .summary { color: #555; }
+  </style>
+</head>
+<body>
+  <h1>News Digest for {{ date }}</h1>
+  {% for source, articles in feed_data.items() %}
+    <section class="source">
+      <h2>{{ source }}</h2>
+      {% for art in articles %}
+        <div class="article">
+          <div class="title">
+            <a href="{{ art.link }}" target="_blank">{{ art.title }}</a>
+          </div>
+          {% if art.summary %}
+            <p class="summary">{{ art.summary }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </section>
+  {% endfor %}
+</body>
+</html>
